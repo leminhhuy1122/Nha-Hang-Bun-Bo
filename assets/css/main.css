@@ -69,7 +69,9 @@
   --background-color: #f8efeb; /* Màu nền chính của website */
   --default-color: #352a26; /* Màu chữ thông thường */
   --heading-color: #291812; /* Màu tiêu đề và heading */
-  --accent-color: #e07844; /* Màu nhấn - cam đặc trưng nhà hàng */
+  --accent-color: #b33a2b; /* Màu nhấn - Bún Bò Huế (đậm) */
+  --accent-2: #e07a44; /* secondary warm orange */
+  --broth-color: #3b1f18; /* deep broth brown for emphasis */
   --surface-color: #ffffff; /* Màu nền card và box */
   --contrast-color: #ffffff; /* Màu chữ trên nền tối */
 }
@@ -391,6 +393,149 @@ h6 {
     top: 0;
     left: -100%;
     visibility: visible;
+  }
+}
+
+/* Make nav items look like pill buttons and sit on one row for desktop */
+@media (min-width: 1200px) {
+  .navmenu ul {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin: 0;
+  }
+
+  .navmenu ul li {
+    margin: 0;
+  }
+
+  .navmenu a,
+  .navmenu a:focus {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    transition: transform 0.18s ease, box-shadow 0.18s ease,
+      background 0.18s ease;
+    color: var(--nav-color);
+    font-weight: 500;
+  }
+
+  .navmenu a:hover,
+  .navmenu .active,
+  .navmenu .active:focus {
+    color: var(--nav-hover-color);
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    transform: translateY(-3px);
+    border-color: rgba(255, 255, 255, 0.04);
+  }
+
+  /* Make the CTA stand out as a rounded pill */
+  .nav-cta {
+    margin-left: 14px;
+  }
+
+  .nav-cta .btn-cta {
+    background: linear-gradient(90deg, var(--accent-color), var(--accent-2));
+    color: var(--contrast-color);
+    padding: 10px 18px;
+    border-radius: 28px;
+    border: none;
+    box-shadow: 0 8px 30px rgba(179, 58, 43, 0.18);
+    font-weight: 700;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+  }
+
+  .nav-cta .btn-cta:hover {
+    transform: translateY(-3px);
+    opacity: 0.95;
+  }
+}
+
+/* Keep header branding and nav on a single line, avoid wrapping */
+.branding .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: nowrap;
+}
+
+.branding .logo {
+  flex: 0 0 auto;
+  max-width: 30%;
+}
+
+.branding .logo .logo-brand .sitename {
+  font-size: 22px;
+}
+
+.branding #navmenu {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 0; /* allow shrinking without forcing wrap */
+}
+
+.navmenu ul {
+  flex-wrap: nowrap;
+  gap: 10px;
+}
+
+/* Keep menu visible and prevent horizontal scrollbar */
+.navmenu > ul {
+  overflow-x: visible;
+}
+
+/* Additional visual tidy for nav: compact, readable, premium */
+@media (min-width: 1200px) {
+  .navmenu a {
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.02);
+    color: rgba(255, 255, 255, 0.92);
+    transition: transform 0.18s ease, box-shadow 0.18s ease,
+      background 0.18s ease, color 0.18s ease;
+  }
+
+  .navmenu a:hover {
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+    color: var(--nav-hover-color);
+  }
+
+  /* Slightly reduce CTA size so it fits more comfortably */
+  .nav-cta .btn-cta {
+    padding: 8px 14px;
+    font-size: 14px;
+  }
+}
+
+/* Medium screens: tighten spacing further so items stay inline */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .branding .logo {
+    max-width: 28%;
+  }
+  .navmenu a {
+    padding: 7px 10px;
+    font-size: 13px;
+  }
+  .nav-cta .btn-cta {
+    padding: 7px 12px;
+    font-size: 13px;
+  }
+}
+
+/* Reduce logo subtitle on small screens to avoid pushing nav */
+@media (max-width: 1199px) {
+  .branding .logo .logo-sub {
+    display: none;
+  }
+  .branding .logo {
+    max-width: 60%;
   }
 }
 
@@ -1092,7 +1237,7 @@ section,
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: var(--accent-color);
+  color: var(--accent-2);
   margin-bottom: 15px;
   font-family: var(--nav-font);
 }
@@ -1216,76 +1361,419 @@ section,
 }
 
 .hero .booking-card {
-  background: color-mix(in srgb, var(--surface-color), transparent 70%);
-  border: 1px solid color-mix(in srgb, var(--contrast-color), transparent 90%);
-  padding: 40px;
-  border-radius: 15px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.98);
+  border: 2px solid color-mix(in srgb, var(--accent-color), transparent 80%);
+  padding: 35px;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(255, 255, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(15px);
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero .booking-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
 @media (max-width: 992px) {
   .hero .booking-card {
     margin-top: 50px;
     padding: 30px;
+    border-radius: 15px;
   }
 }
 
-.hero .booking-card h3 {
-  color: var(--heading-color);
-  font-size: 24px;
-  font-weight: 700;
-  margin-bottom: 25px;
+/* Header của booking form */
+.hero .booking-card .booking-header {
   text-align: center;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.hero .booking-card .booking-header::after {
+  content: "";
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-color), var(--accent-2));
+  border-radius: 2px;
+}
+
+.hero .booking-card h3 {
+  color: black;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  font-family: var(--heading-font);
+}
+
+.hero .booking-card .booking-subtitle {
+  color: #666666;
+  font-size: 14px;
+  margin-bottom: 0;
+  font-style: italic;
+}
+
+/* Enhanced form styling */
+.hero .booking-card .enhanced-booking-form .form-group {
+  position: relative;
+  margin-bottom: 0;
+}
+
+.hero .booking-card .input-wrapper,
+.hero .booking-card .select-wrapper,
+.hero .booking-card .textarea-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.hero .booking-card .form-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--accent-color);
+  font-size: 16px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.hero .booking-card .textarea-wrapper .form-icon {
+  top: 20px;
+  transform: none;
 }
 
 .hero .booking-card .form-control,
-.hero .booking-card select {
-  padding: 12px 15px;
-  border: 2px solid color-mix(in srgb, var(--default-color), transparent 85%);
-  border-radius: 8px;
-  font-size: 14px;
+.hero .booking-card .custom-select {
+  padding: 15px 15px 15px 50px;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 500;
   transition: all 0.3s ease;
-  color: var(--default-color);
-  background-color: transparent;
+  color: #333333;
+  background-color: #ffffff;
+  width: 100%;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .hero .booking-card .form-control:focus,
-.hero .booking-card select:focus {
+.hero .booking-card .custom-select:focus {
   border-color: var(--accent-color);
-  box-shadow: 0 0 0 0.2rem
-    color-mix(in srgb, var(--accent-color), transparent 80%);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent-color), transparent 85%),
+    inset 0 2px 4px rgba(0, 0, 0, 0.05);
+  background-color: #ffffff;
+  outline: none;
 }
 
-.hero .booking-card .form-control::placeholder,
-.hero .booking-card select::placeholder {
-  color: color-mix(in srgb, var(--default-color), transparent 70%);
+.hero .booking-card .form-control::placeholder {
+  color: #888888;
+  font-weight: 400;
 }
 
-.hero .booking-card select {
+/* Select dropdown styling */
+.hero .booking-card .select-wrapper {
+  position: relative;
+}
+
+.hero .booking-card .custom-select {
+  appearance: none;
+  cursor: pointer;
+  padding-right: 50px;
+}
+
+.hero .booking-card .select-arrow {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--accent-color);
+  font-size: 14px;
+  pointer-events: none;
+  transition: transform 0.3s ease;
+}
+
+.hero .booking-card .custom-select:focus + .select-arrow {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+/* Textarea specific styling */
+.hero .booking-card textarea.form-control {
+  resize: vertical;
+  min-height: 90px;
+  padding-top: 15px;
+  line-height: 1.5;
+}
+
+/* Date and time inputs */
+.hero .booking-card input[type="date"],
+.hero .booking-card input[type="time"] {
   cursor: pointer;
 }
 
-.hero .booking-card textarea {
-  resize: vertical;
-  min-height: 80px;
+.hero .booking-card input[type="date"]::-webkit-calendar-picker-indicator,
+.hero .booking-card input[type="time"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  cursor: pointer;
 }
 
-.hero .booking-card .btn-primary {
-  background-color: var(--accent-color);
-  border: 2px solid var(--accent-color);
-  color: var(--contrast-color);
-  padding: 15px;
-  font-size: 16px;
+/* Form status messages */
+.hero .booking-card .form-status {
+  margin-bottom: 20px;
+}
+
+.hero .booking-card .loading {
+  display: none;
+  color: var(--accent-color);
   font-weight: 600;
-  border-radius: 8px;
-  transition: all 0.3s ease;
+  text-align: center;
+  margin-bottom: 15px;
 }
 
-.hero .booking-card .btn-primary:hover {
-  background-color: color-mix(in srgb, var(--accent-color), black 15%);
-  border-color: color-mix(in srgb, var(--accent-color), black 15%);
-  transform: translateY(-2px);
+.hero .booking-card .loading-spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid color-mix(in srgb, var(--accent-color), transparent 80%);
+  border-top: 2px solid var(--accent-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-right: 8px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.hero .booking-card .error-message {
+  display: none;
+  background-color: rgba(220, 53, 69, 0.1);
+  border: 1px solid rgba(220, 53, 69, 0.3);
+  color: #dc3545;
+  padding: 12px 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.hero .booking-card .sent-message {
+  display: none;
+  background-color: rgba(25, 135, 84, 0.1);
+  border: 1px solid rgba(25, 135, 84, 0.3);
+  color: #198754;
+  padding: 12px 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.hero .booking-card .sent-message i {
+  margin-right: 5px;
+}
+
+/* Enhanced submit button */
+.hero .booking-card .btn-reserve {
+  background: linear-gradient(
+    135deg,
+    var(--accent-color) 0%,
+    var(--accent-2) 100%
+  );
+  border: none;
+  color: var(--contrast-color);
+  padding: 18px 30px;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 12px;
+  width: 100%;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 8px 25px rgba(179, 58, 43, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero .booking-card .btn-reserve::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.hero .booking-card .btn-reserve:hover::before {
+  left: 100%;
+}
+
+.hero .booking-card .btn-reserve:hover {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--accent-color), black 10%) 0%,
+    color-mix(in srgb, var(--accent-2), black 10%) 100%
+  );
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(179, 58, 43, 0.4);
+}
+
+.hero .booking-card .btn-reserve:active {
+  transform: translateY(-1px);
+  transition: transform 0.1s ease;
+}
+
+/* Booking footer */
+.hero .booking-card .booking-footer {
+  margin-top: 25px;
+  padding-top: 20px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.hero .booking-card .quick-contact .contact-item,
+.hero .booking-card .quick-contact .operating-hours {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 13px;
+  color: #666666;
+}
+
+.hero .booking-card .quick-contact i {
+  color: var(--accent-color);
+  font-size: 14px;
+}
+
+.hero .booking-card .quick-contact a {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.hero .booking-card .quick-contact a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive adjustments for booking form */
+@media (max-width: 768px) {
+  .hero .booking-card {
+    padding: 25px;
+  }
+
+  .hero .booking-card h3 {
+    font-size: 24px;
+    color: var(--heading-color);
+  }
+
+  .hero .booking-card .form-control,
+  .hero .booking-card .custom-select {
+    padding: 12px 12px 12px 40px;
+    font-size: 14px;
+    color: #333333;
+  }
+
+  .hero .booking-card .form-icon {
+    left: 12px;
+    font-size: 14px;
+  }
+
+  .hero .booking-card .btn-reserve {
+    padding: 15px 25px;
+    font-size: 15px;
+  }
+}
+
+/* Form focus states and validation */
+.hero .booking-card .form-group.focused .form-control,
+.hero .booking-card .form-group.focused .custom-select {
+  border-color: var(--accent-color);
+  background-color: #ffffff;
+  color: #333333;
+}
+
+.hero .booking-card .form-group.focused .form-icon {
+  color: var(--accent-2);
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* Custom styling for date/time inputs */
+.hero .booking-card input[type="date"]::-webkit-datetime-edit,
+.hero .booking-card input[type="time"]::-webkit-datetime-edit {
+  padding: 0;
+  margin-left: 5px;
+}
+
+.hero .booking-card input[type="date"]::-webkit-datetime-edit-fields-wrapper,
+.hero .booking-card input[type="time"]::-webkit-datetime-edit-fields-wrapper {
+  padding: 0;
+}
+
+/* Enhanced visual feedback */
+.hero .booking-card .form-control:valid:not(:placeholder-shown) {
+  border-color: #28a745;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath fill='%2328a745' d='m2.3 6.73.94-.94L4.3 4.72l1.48-1.48.94.94L4.3 6.6z'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right calc(0.375em + 0.1875rem) center;
+  background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+
+.hero .booking-card .custom-select:valid:not([value=""]) {
+  border-color: #28a745;
+}
+
+/* Animation for form submission */
+.hero .booking-card.submitting {
+  pointer-events: none;
+}
+
+.hero .booking-card.submitting .btn-reserve {
+  background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+  transform: none;
+  box-shadow: none;
+}
+
+/* Success animation */
+@keyframes checkmark {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.hero .booking-card .sent-message i {
+  animation: checkmark 0.5s ease-out;
 }
 
 .hero .scroll-indicator {
@@ -1793,6 +2281,8 @@ section,
   box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
   transition: all 0.4s ease;
   height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .menu .chef-recommendations .recommendation-card:hover {
@@ -1856,6 +2346,9 @@ section,
 
 .menu .chef-recommendations .recommendation-card .recommendation-content {
   padding: 30px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .menu
@@ -1899,6 +2392,8 @@ section,
   font-size: 0.95rem;
   line-height: 1.7;
   margin-bottom: 20px;
+  min-height: 3.4em;
+  flex: 1;
 }
 
 .menu
@@ -2002,6 +2497,49 @@ section,
   color: #b8860b;
 }
 
+/* Nút thêm vào giỏ cho món đặc biệt */
+.menu .chef-recommendations .recommendation-actions {
+  margin-top: auto;
+  padding-top: 15px;
+  border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+}
+
+.menu .chef-recommendations .special-dish-btn {
+  background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-2) 100%);
+  border: none;
+  color: var(--contrast-color);
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(179, 58, 43, 0.3);
+}
+
+.menu .chef-recommendations .special-dish-btn:hover {
+  background: linear-gradient(135deg, 
+    color-mix(in srgb, var(--accent-color), black 10%) 0%, 
+    color-mix(in srgb, var(--accent-2), black 10%) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(179, 58, 43, 0.4);
+}
+
+.menu .chef-recommendations .special-dish-btn:active {
+  transform: translateY(0);
+  transition: transform 0.1s ease;
+}
+
+.menu .chef-recommendations .special-dish-btn i {
+  font-size: 16px;
+}
+
 @media (max-width: 1200px) {
   .menu .menu-grid .menu-card .menu-card-content {
     padding: 20px;
@@ -2025,6 +2563,21 @@ section,
 
   .menu .chef-recommendations .recommendation-card .recommendation-content {
     padding: 24px;
+  }
+
+  .menu .chef-recommendations .recommendation-card .recommendation-content p {
+    min-height: auto;
+    flex: none;
+  }
+
+  .menu .chef-recommendations .special-dish-btn {
+    padding: 10px 20px;
+    font-size: 13px;
+    border-radius: 20px;
+  }
+
+  .menu .chef-recommendations .special-dish-btn i {
+    font-size: 14px;
   }
 
   .menu
@@ -2147,6 +2700,77 @@ section,
   background-color: var(--accent-color);
   width: 20px;
   border-radius: 4px;
+}
+
+/* 3D Coverflow appearance for testimonials */
+.testimonials .swiper-slide {
+  transform-style: preserve-3d;
+  perspective: 1200px;
+}
+
+.testimonials .testimonial-item {
+  transition: transform 0.6s cubic-bezier(0.2, 0.9, 0.3, 1), box-shadow 0.4s;
+  will-change: transform;
+  transform-origin: center center;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 14px;
+  padding: 28px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.98),
+    rgba(250, 245, 243, 0.96)
+  );
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+}
+
+/* Slightly elevate the active (center) slide */
+.testimonials .swiper-slide-active .testimonial-item {
+  transform: translateY(-8px) scale(1.02) rotateY(0deg);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.12);
+}
+
+/* Side slides: tilt to create 3D feeling */
+.testimonials .swiper-slide-prev .testimonial-item,
+.testimonials .swiper-slide-next .testimonial-item {
+  transform: scale(0.96) translateY(0) rotateY(12deg);
+  opacity: 0.98;
+  filter: saturate(0.98) brightness(0.98);
+}
+
+/* Further reduce non-neighbor slides for depth */
+.testimonials
+  .swiper-slide:not(.swiper-slide-active):not(.swiper-slide-next):not(
+    .swiper-slide-prev
+  )
+  .testimonial-item {
+  transform: scale(0.92) translateY(0) rotateY(18deg);
+  opacity: 0.85;
+}
+
+/* Make stars and headings more prominent with Huế accent */
+.testimonials .testimonial-item .stars i {
+  color: #f7b50d;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+@media (max-width: 992px) {
+  .testimonials .testimonial-item {
+    padding: 20px;
+  }
+  .testimonials .swiper-slide-prev .testimonial-item,
+  .testimonials .swiper-slide-next .testimonial-item {
+    transform: scale(0.98) rotateY(8deg);
+  }
+}
+
+@media (max-width: 576px) {
+  .testimonials .testimonial-item {
+    padding: 18px;
+  }
+  .testimonials .swiper-wrapper {
+    align-items: center;
+  }
 }
 
 @media (max-width: 1199.98px) {
@@ -2379,21 +3003,24 @@ section,
 }
 
 .book-a-table .reservation-container {
-  background: var(--surface-color);
-  border-radius: 15px;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--surface-color), rgba(255, 240, 238, 0.6) 0%),
+    var(--surface-color)
+  );
+  border-radius: 18px;
   overflow: hidden;
-  box-shadow: 0 10px 40px
-    color-mix(in srgb, var(--default-color), transparent 90%);
+  box-shadow: 0 18px 50px rgba(55, 30, 25, 0.08);
+  border: 1px solid rgba(179, 58, 43, 0.06);
 }
 
 .book-a-table .reservation-form-section {
-  padding: 3rem 2.5rem;
-  background: linear-gradient(
-    135deg,
-    var(--surface-color) 0%,
-    color-mix(in srgb, var(--accent-color), transparent 95%) 100%
-  );
+  padding: 3.2rem 2.6rem;
+  background: transparent;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .book-a-table .reservation-form-section .form-header {
@@ -2401,67 +3028,93 @@ section,
 }
 
 .book-a-table .reservation-form-section .form-header h3 {
-  font-size: 2.2rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  color: var(--heading-color);
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 0.6rem;
+  color: var(--broth-color);
+  text-align: center;
 }
 
 .book-a-table .reservation-form-section .form-header p {
-  color: color-mix(in srgb, var(--default-color), transparent 25%);
-  font-size: 1rem;
-  line-height: 1.6;
+  color: color-mix(in srgb, var(--default-color), transparent 30%);
+  font-size: 0.98rem;
+  line-height: 1.7;
+  text-align: center;
 }
 
 .book-a-table .reservation-form-section .form-control,
 .book-a-table .reservation-form-section .form-select {
   color: var(--default-color);
-  background-color: var(--background-color);
-  font-size: 0.95rem;
-  padding: 0.9rem 1.2rem;
-  border: 2px solid color-mix(in srgb, var(--default-color), transparent 85%);
-  border-radius: 8px;
+  background-color: color-mix(
+    in srgb,
+    var(--background-color),
+    rgba(255, 255, 255, 0.6)
+  );
+  font-size: 0.98rem;
+  padding: 14px 16px;
+  border: 1px solid rgba(179, 58, 43, 0.06);
+  border-radius: 12px;
   transition: all 0.3s ease;
 }
 
 .book-a-table .reservation-form-section .form-control:focus,
 .book-a-table .reservation-form-section .form-select:focus {
-  border-color: var(--accent-color);
-  box-shadow: 0 0 0 0.15rem
-    color-mix(in srgb, var(--accent-color), transparent 75%);
-  background-color: var(--background-color);
+  border-color: color-mix(in srgb, var(--accent-color), black 6%);
+  box-shadow: 0 6px 25px rgba(179, 58, 43, 0.06);
+  background-color: color-mix(
+    in srgb,
+    var(--background-color),
+    rgba(255, 255, 255, 0.8)
+  );
 }
 
 .book-a-table .reservation-form-section .form-control::placeholder,
 .book-a-table .reservation-form-section .form-select::placeholder {
-  color: color-mix(in srgb, var(--default-color), transparent 55%);
+  color: color-mix(in srgb, var(--default-color), transparent 60%);
 }
 
 .book-a-table .reservation-form-section .btn-reserve {
-  background: linear-gradient(
-    45deg,
-    var(--accent-color),
-    color-mix(in srgb, var(--accent-color), blue 15%)
-  );
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(90deg, var(--accent-color), var(--accent-2));
   color: var(--contrast-color);
   border: none;
-  padding: 1rem 2rem;
-  font-weight: 600;
-  font-size: 1.1rem;
-  border-radius: 8px;
-  margin-top: 1.5rem;
-  transition: all 0.3s ease;
+  padding: 14px 20px;
+  font-weight: 700;
+  font-size: 1.05rem;
+  border-radius: 10px;
+  margin-top: 1.2rem;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
 
 .book-a-table .reservation-form-section .btn-reserve:hover {
-  background: linear-gradient(
-    45deg,
-    color-mix(in srgb, var(--accent-color), black 10%),
-    color-mix(in srgb, var(--accent-color), blue 25%)
-  );
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px
-    color-mix(in srgb, var(--accent-color), transparent 65%);
+  transform: translateY(-3px);
+  box-shadow: 0 14px 40px rgba(179, 58, 43, 0.14);
+}
+
+/* Two-column small inputs (date/time) visual spacing */
+.reservation-form-section .row .col-md-6 input,
+.reservation-form-section .row .col-md-6 .form-select {
+  padding: 12px 14px;
+}
+
+/* Textarea bigger and rounded like the mock */
+.reservation-form-section textarea.form-control {
+  min-height: 110px;
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+
+/* Make the reservation card header more decorative */
+.reservation-form-section .form-header {
+  padding-bottom: 0.6rem;
+}
+
+/* Ensure the reservation card has internal spacing matching the design */
+.reservation-container .reservation-form-section {
+  padding: 36px;
 }
 
 .book-a-table .reservation-info-section {
@@ -3870,6 +4523,77 @@ section,
   flex-shrink: 0;
 }
 
+/* ----------------------------
+   Bún Bò Huế Theming Helpers
+   - Additional accents, card styles, buttons
+   - Use these utilities to reinforce the Huế identity
+   ---------------------------- */
+
+.section-title h2 {
+  font-family: var(--heading-font);
+  font-weight: 700;
+  color: var(--broth-color);
+  font-size: 2.4rem;
+  margin-bottom: 10px;
+}
+
+.section-title .description-title {
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.feature-card,
+.info-card,
+.menu .menu-card,
+.book-a-table .reservation-container {
+  border-radius: 14px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.98),
+    rgba(250, 245, 243, 0.95)
+  );
+  border: 1px solid rgba(179, 58, 43, 0.06);
+  box-shadow: 0 8px 30px rgba(179, 58, 43, 0.04);
+}
+
+.award-item .award-icon,
+.community-icon,
+.feature-badge {
+  background: linear-gradient(180deg, var(--accent-color), var(--accent-2));
+  color: var(--contrast-color);
+  width: 54px;
+  height: 54px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+}
+
+.btn-primary,
+.btn-cta {
+  background: linear-gradient(180deg, var(--accent-color), var(--accent-2));
+  border: none;
+  color: var(--contrast-color);
+  box-shadow: 0 10px 30px rgba(179, 58, 43, 0.18);
+}
+
+.section:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 160px;
+  height: 160px;
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(179, 58, 43, 0.03),
+    transparent 30%
+  );
+  transform: translate(-20px, -20px);
+  border-radius: 20px;
+  pointer-events: none;
+}
+
 .terms-of-service .tos-contact .contact-box .contact-icon i {
   font-size: 1.8rem;
   color: var(--contrast-color);
@@ -4306,9 +5030,6 @@ section,
 /*--------------------------------------------------------------
 # Starter Section Section
 --------------------------------------------------------------*/
-.starter-section {
-  /* Add your styles here */
-}
 
 /*--------------------------------------------------------------
 # Shopping Cart Styles

@@ -104,6 +104,178 @@
   });
 
   /**
+   * Enhanced Booking Form Functionality
+   * Cải tiến chức năng đặt bàn với validation và UX tốt hơn
+   */
+  function initBookingForm() {
+    const bookingForm = document.getElementById("bookingForm");
+    const dateInput = document.getElementById("reservationDate");
+    const timeInput = document.getElementById("reservationTime");
+
+    if (!bookingForm) return;
+
+    // Set minimum date to today
+    if (dateInput) {
+      const today = new Date();
+      const minDate = today.toISOString().split("T")[0];
+      dateInput.setAttribute("min", minDate);
+
+      // Set default date to tomorrow
+      const tomorrow = new Date(today);
+      tomorrow.setDate(today.getDate() + 1);
+      const defaultDate = tomorrow.toISOString().split("T")[0];
+      dateInput.value = defaultDate;
+    }
+
+    // Set default time to 7:00 PM
+    if (timeInput) {
+      timeInput.value = "19:00";
+    }
+
+    // Add input validation and formatting
+    const phoneInput = bookingForm.querySelector('input[name="phone"]');
+    if (phoneInput) {
+      phoneInput.addEventListener("input", function (e) {
+        // Format phone number as user types
+        let value = e.target.value.replace(/\D/g, "");
+        if (value.length > 0) {
+          if (value.length <= 4) {
+            value = value.replace(/(\d{4})/, "$1");
+          } else if (value.length <= 7) {
+            value = value.replace(/(\d{4})(\d{3})/, "$1 $2");
+          } else {
+            value = value.replace(/(\d{4})(\d{3})(\d{3})/, "$1 $2 $3");
+          }
+        }
+        e.target.value = value;
+      });
+    }
+
+    // Add enhanced validation
+    bookingForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const formData = new FormData(this);
+      const selectedDate = new Date(formData.get("date"));
+      const selectedTime = formData.get("time");
+      const currentDate = new Date();
+
+      // Clear previous error messages
+      clearFormMessages();
+
+      // Validate date is not in the past
+      if (selectedDate < currentDate.setHours(0, 0, 0, 0)) {
+        showFormError("Vui lòng chọn ngày trong tương lai.");
+        return;
+      }
+
+      // Validate time is within operating hours
+      const [hours, minutes] = selectedTime.split(":").map(Number);
+      if (hours < 6 || (hours >= 22 && minutes > 0)) {
+        showFormError("Vui lòng chọn giờ trong khoảng 6:00 AM - 10:00 PM.");
+        return;
+      }
+
+      // Validate if selected time is not in the past for today
+      const today = new Date();
+      const isToday = selectedDate.toDateString() === today.toDateString();
+      if (isToday) {
+        const currentTime = today.getHours() * 60 + today.getMinutes();
+        const selectedTimeMinutes = hours * 60 + minutes;
+        if (selectedTimeMinutes <= currentTime + 60) {
+          // At least 1 hour from now
+          showFormError("Vui lòng đặt bàn trước ít nhất 1 giờ.");
+          return;
+        }
+      }
+
+      // Show loading state
+      showFormLoading(true);
+
+      // Simulate form submission (replace with actual AJAX call)
+      setTimeout(() => {
+        showFormLoading(false);
+        showFormSuccess();
+        this.reset();
+        // Reset default values
+        if (dateInput) dateInput.value = defaultDate;
+        if (timeInput) timeInput.value = "19:00";
+      }, 2000);
+    });
+
+    // Add visual feedback for form interactions
+    const formControls = bookingForm.querySelectorAll(
+      ".form-control, .custom-select"
+    );
+    formControls.forEach((control) => {
+      control.addEventListener("focus", function () {
+        this.closest(".form-group").classList.add("focused");
+      });
+
+      control.addEventListener("blur", function () {
+        if (!this.value) {
+          this.closest(".form-group").classList.remove("focused");
+        }
+      });
+
+      // Check if already has value on page load
+      if (control.value) {
+        control.closest(".form-group").classList.add("focused");
+      }
+    });
+  }
+
+  function clearFormMessages() {
+    const form = document.getElementById("bookingForm");
+    if (!form) return;
+
+    form.querySelector(".error-message").style.display = "none";
+    form.querySelector(".sent-message").style.display = "none";
+    form.querySelector(".loading").style.display = "none";
+  }
+
+  function showFormError(message) {
+    const form = document.getElementById("bookingForm");
+    if (!form) return;
+
+    const errorElement = form.querySelector(".error-message");
+    errorElement.textContent = message;
+    errorElement.style.display = "block";
+
+    // Scroll to error message
+    errorElement.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+
+  function showFormSuccess() {
+    const form = document.getElementById("bookingForm");
+    if (!form) return;
+
+    const successElement = form.querySelector(".sent-message");
+    successElement.style.display = "block";
+
+    // Scroll to success message
+    successElement.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+
+  function showFormLoading(show) {
+    const form = document.getElementById("bookingForm");
+    if (!form) return;
+
+    const loadingElement = form.querySelector(".loading");
+    const submitButton = form.querySelector(".btn-reserve");
+
+    if (show) {
+      loadingElement.style.display = "block";
+      submitButton.disabled = true;
+      submitButton.style.opacity = "0.7";
+    } else {
+      loadingElement.style.display = "none";
+      submitButton.disabled = false;
+      submitButton.style.opacity = "1";
+    }
+  }
+
+  /**
    * Toggle mobile nav dropdowns
    */
   document.querySelectorAll(".navmenu .toggle-dropdown").forEach((navmenu) => {
@@ -785,3 +957,10 @@ window.updateQuantityInCheckout = updateQuantityInCheckout;
 window.removeFromCartInCheckout = removeFromCartInCheckout;
 window.showToast = showToast;
 window.showConfirm = showConfirm;
+
+/**
+ * Initialize Enhanced Booking Form on DOM Load
+ */
+document.addEventListener("DOMContentLoaded", function () {
+  initBookingForm();
+});
