@@ -91,48 +91,31 @@
         <div
           class="container position-relative d-flex align-items-center justify-content-between"
         >
-          <a href="index.html" class="logo d-flex align-items-center">
-            <!-- Uncomment the line below if you also wish to use an image logo -->
-            <!-- <img src="assets/img/logo.webp" alt=""> -->
-            <h1 class="sitename">Hương Vị Cố Đô</h1>
+          <a href="index.html" class="logo d-flex align-items-center" aria-label="Hương Vị Cố Đô - Trang chủ">
+            <!-- Premium text logo + subtle crown icon -->
+            <div class="logo-brand d-flex flex-column">
+              <div class="logo-top d-flex align-items-center">
+                <svg class="logo-crown" xmlns="http://www.w3.org/2000/svg" width="28" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 15l4-7 4 4 4-8 4 6 4-1v11H2z"></path></svg>
+                <h1 class="sitename">Hương Vị Cố Đô</h1>
+              </div>
+              <div class="logo-sub">Nhà Hàng 5★ - Tinh Hoa Ẩm Thực</div>
+            </div>
           </a>
 
-          <nav id="navmenu" class="navmenu">
+          <nav id="navmenu" class="navmenu" aria-label="Main navigation">
             <ul>
               <li><a href="#hero" class="active">Trang Chủ</a></li>
               <li><a href="#about">Giới Thiệu</a></li>
               <li><a href="#menu">Thực Đơn</a></li>
-              <li><a href="#book-a-table">Đặt Bàn</a></li>
-              <li><a href="#chefs">Đầu Bếp</a></li>
-              <li><a href="#events">Sự Kiện</a></li>
-              <li class="dropdown">
-                <a href="#"
-                  ><span>Dịch Vụ</span>
-                  <i class="bi bi-chevron-down toggle-dropdown"></i
-                ></a>
-                <ul>
-                  <li><a href="#">Tiệc Cưới</a></li>
-                  <li class="dropdown">
-                    <a href="#"
-                      ><span>Tiệc Công Ty</span>
-                      <i class="bi bi-chevron-down toggle-dropdown"></i
-                    ></a>
-                    <ul>
-                      <li><a href="#">Tiệc Họp Mặt</a></li>
-                      <li><a href="#">Tiệc Khai Trương</a></li>
-                      <li><a href="#">Tiệc Tất Niên</a></li>
-                      <li><a href="#">Tiệc Sinh Nhật</a></li>
-                      <li><a href="#">Tiệc Thôi Nôi</a></li>
-                    </ul>
-                  </li>
-                  <li><a href="#">Giao Hàng Tận Nơi</a></li>
-                  <li><a href="#">Đào Tạo Nấu Ăn</a></li>
-                  <li><a href="#">Combo Gia Đình</a></li>
-                </ul>
-              </li>
               <li><a href="#contact">Liên Hệ</a></li>
             </ul>
-            <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+
+            <!-- Desktop CTA -->
+            <div class="nav-cta d-none d-lg-flex align-items-center">
+              <a href="#book-a-table" class="btn btn-cta">Đặt Bàn</a>
+            </div>
+
+            <i class="mobile-nav-toggle d-xl-none bi bi-list" aria-label="Mở menu"></i>
           </nav>
         </div>
       </div>
@@ -168,8 +151,8 @@
                   data-aos="fade-up"
                   data-aos-delay="200"
                 >
-                  <a href="#" class="btn btn-primary">Đặt Bàn Ngay</a>
-                  <a href="#" class="btn btn-outline">Xem Thực Đơn</a>
+                  <a href="#book-a-table" class="btn btn-primary">Đặt Bàn Ngay</a>
+                  <a href="#menu" class="btn btn-outline">Xem Thực Đơn</a>
                 </div>
 
                 <div
@@ -895,26 +878,7 @@
             </div>
           </div>
 
-          <div class="menu-actions" data-aos="fade-up" data-aos-delay="400">
-            <div class="row align-items-center">
-              <div class="col-md-8">
-                <div class="seasonal-notice">
-                  <i class="bi bi-info-circle"></i>
-                  <span
-                    >Thực đơn có thể thay đổi theo mùa. Giá cả có thể thay đổi
-                    tùy theo thời điểm và không báo trước.</span
-                  >
-                </div>
-              </div>
-              <div class="col-md-4 text-md-end">
-                <a href="#" class="menu-download-btn">
-                  <i class="bi bi-download"></i>
-                  <span>Tải Thực Đơn PDF</span>
-                </a>
-              </div>
-            </div>
-          </div>
-
+          
           <div
             class="chef-recommendations"
             data-aos="fade-up"
@@ -1024,12 +988,23 @@
             <script type="application/json" class="swiper-config">
               {
                 "loop": true,
-                "speed": 600,
+                "speed": 800,
                 "autoplay": {
-                  "delay": 5000
+                  "delay": 4500,
+                  "disableOnInteraction": false
                 },
                 "slidesPerView": 3,
                 "spaceBetween": 24,
+                "effect": "coverflow",
+                "coverflowEffect": {
+                  "rotate": 18,
+                  "stretch": 0,
+                  "depth": 220,
+                  "modifier": 1,
+                  "slideShadows": false
+                },
+                "grabCursor": true,
+                "centeredSlides": true,
                 "pagination": {
                   "el": ".swiper-pagination",
                   "type": "bullets",
@@ -1041,8 +1016,12 @@
                     "spaceBetween": 16
                   },
                   "768": {
-                    "slidesPerView": 2,
-                    "spaceBetween": 24
+                    "slidesPerView": 1.6,
+                    "spaceBetween": 20
+                  },
+                  "992": {
+                    "slidesPerView": 2.2,
+                    "spaceBetween": 22
                   },
                   "1200": {
                     "slidesPerView": 3,
@@ -1257,278 +1236,6 @@
           </div>
         </div>
       </section>
-      <!-- /Testimonials Section -->
-
-      <!-- Chefs Section -->
-      <section id="chefs" class="chefs section">
-        <!-- Section Title -->
-        <div class="container section-title" data-aos="fade-up">
-          <span class="description-title">Đầu Bếp</span>
-          <h2>Đội Ngũ Đầu Bếp</h2>
-          <p>
-            Đội ngũ đầu bếp giàu kinh nghiệm với tình yêu và tâm huyết với ẩm
-            thực Huế truyền thống
-          </p>
-        </div>
-        <!-- End Section Title -->
-
-        <div class="container" data-aos="fade-up" data-aos-delay="100">
-          <div
-            class="featured-chef row align-items-center g-4"
-            data-aos="fade-up"
-            data-aos-delay="150"
-          >
-            <div class="col-lg-5">
-              <figure class="chef-photo m-0">
-                <img
-                  src="assets/img/restaurant/chef-4.webp"
-                  alt="Executive chef portrait"
-                  class="img-fluid"
-                />
-                <div class="badge-overlay">
-                  <span class="pill"
-                    ><i class="bi bi-star-fill me-1"></i> Michelin Mention</span
-                  >
-                </div>
-              </figure>
-            </div>
-
-            <div class="col-lg-7">
-              <div class="chef-content">
-                <div class="topline d-inline-flex align-items-center mb-2">
-                  <i class="bi bi-patch-check-fill me-2"></i>
-                  <span>Đầu Bếp Chính</span>
-                </div>
-                <h3 class="name">Nguyễn Văn Thành</h3>
-                <p class="role mb-3">Bếp Trưởng</p>
-                <p class="bio mb-4">
-                  Với hơn 25 năm kinh nghiệm trong nghề và sự đam mê với ẩm thực
-                  Huế, thầy Thành đã nghiên cứu và phục dựng lại nhiều món ăn
-                  cung đình Huế. Thầy được mệnh danh là "bậc thầy của bún bò
-                  Huế".
-                </p>
-
-                <ul class="awards list-unstyled d-flex flex-wrap gap-2 mb-4">
-                  <li class="award-badge">
-                    <i class="bi bi-award me-1"></i> Nghệ Nhân Ẩm Thực 2020
-                  </li>
-                  <li class="award-badge">
-                    <i class="bi bi-bookmark-star me-1"></i> Giải Vàng Món Huế
-                  </li>
-                  <li class="award-badge">
-                    <i class="bi bi-trophy me-1"></i> Đầu Bếp Xuất Sắc Miền
-                    Trung
-                  </li>
-                </ul>
-
-                <div class="signature">
-                  <img
-                    src="assets/img/misc/signature-1.webp"
-                    alt="Chef signature"
-                    class="img-fluid"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="row g-4 team-grid mt-2">
-            <div
-              class="col-md-6 col-lg-3"
-              data-aos="zoom-in"
-              data-aos-delay="200"
-            >
-              <article class="chef-card h-100">
-                <div class="image-wrapper">
-                  <img
-                    src="assets/img/restaurant/chef-1.webp"
-                    alt="Sous chef portrait"
-                    class="img-fluid"
-                    loading="lazy"
-                  />
-                  <ul class="social list-unstyled m-0">
-                    <li>
-                      <a href="#" aria-label="Instagram"
-                        ><i class="bi bi-instagram"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a href="#" aria-label="Twitter"
-                        ><i class="bi bi-twitter-x"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a href="#" aria-label="LinkedIn"
-                        ><i class="bi bi-linkedin"></i
-                      ></a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="content p-3">
-                  <h4 class="name mb-1">Trần Thị Hoa</h4>
-                  <p class="role mb-2">Phó Bếp Trưởng</p>
-                  <p class="excerpt mb-3">
-                    Chuyên gia về các món bánh Huế truyền thống như bánh bèo,
-                    bánh nậm, bánh lọc. Có tay nghề cao và kinh nghiệm 15 năm.
-                  </p>
-                  <div class="badges d-flex flex-wrap gap-2">
-                    <span class="mini-badge"
-                      ><i class="bi bi-award me-1"></i> Thầy Cô Bánh Huế</span
-                    >
-                  </div>
-                </div>
-              </article>
-            </div>
-            <!-- End Chef Card -->
-
-            <div
-              class="col-md-6 col-lg-3"
-              data-aos="zoom-in"
-              data-aos-delay="250"
-            >
-              <article class="chef-card h-100">
-                <div class="image-wrapper">
-                  <img
-                    src="assets/img/restaurant/chef-6.webp"
-                    alt="Pastry chef portrait"
-                    class="img-fluid"
-                    loading="lazy"
-                  />
-                  <ul class="social list-unstyled m-0">
-                    <li>
-                      <a href="#" aria-label="Instagram"
-                        ><i class="bi bi-instagram"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a href="#" aria-label="Facebook"
-                        ><i class="bi bi-facebook"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a href="#" aria-label="Pinterest"
-                        ><i class="bi bi-pinterest"></i
-                      ></a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="content p-3">
-                  <h4 class="name mb-1">Lê Văn Minh</h4>
-                  <p class="role mb-2">Đầu Bếp Chè & Tráng Miệng</p>
-                  <p class="excerpt mb-3">
-                    Chuyên về các loại chè Huế truyền thống và món tráng miệng.
-                    Tay nghề tinh xảo, được khách hàng yêu thích.
-                  </p>
-                  <div class="badges d-flex flex-wrap gap-2">
-                    <span class="mini-badge"
-                      ><i class="bi bi-cup me-1"></i> Bậc Thầy Chè Huế</span
-                    >
-                  </div>
-                </div>
-              </article>
-            </div>
-            <!-- End Chef Card -->
-
-            <div
-              class="col-md-6 col-lg-3"
-              data-aos="zoom-in"
-              data-aos-delay="300"
-            >
-              <article class="chef-card h-100">
-                <div class="image-wrapper">
-                  <img
-                    src="assets/img/restaurant/chef-8.webp"
-                    alt="Grill chef portrait"
-                    class="img-fluid"
-                    loading="lazy"
-                  />
-                  <ul class="social list-unstyled m-0">
-                    <li>
-                      <a href="#" aria-label="Instagram"
-                        ><i class="bi bi-instagram"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a href="#" aria-label="TikTok"
-                        ><i class="bi bi-tiktok"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a href="#" aria-label="YouTube"
-                        ><i class="bi bi-youtube"></i
-                      ></a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="content p-3">
-                  <h4 class="name mb-1">Phạm Văn Dũng</h4>
-                  <p class="role mb-2">Chuyên Gia Nướng</p>
-                  <p class="excerpt mb-3">
-                    Chuyên về các món nướng như thịt nướng lá lốt, nem nướng. Kỹ
-                    thuật nướng đỉnh cao, giữ nguyên hương vị truyền thống.
-                  </p>
-                  <div class="badges d-flex flex-wrap gap-2">
-                    <span class="mini-badge"
-                      ><i class="bi bi-fire me-1"></i> Cao Thủ Nướng</span
-                    >
-                  </div>
-                </div>
-              </article>
-            </div>
-            <!-- End Chef Card -->
-
-            <div
-              class="col-md-6 col-lg-3"
-              data-aos="zoom-in"
-              data-aos-delay="350"
-            >
-              <article class="chef-card h-100">
-                <div class="image-wrapper">
-                  <img
-                    src="assets/img/restaurant/chef-3.webp"
-                    alt="Line cook portrait"
-                    class="img-fluid"
-                    loading="lazy"
-                  />
-                  <ul class="social list-unstyled m-0">
-                    <li>
-                      <a href="#" aria-label="Instagram"
-                        ><i class="bi bi-instagram"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a href="#" aria-label="Twitter"
-                        ><i class="bi bi-twitter-x"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a href="#" aria-label="LinkedIn"
-                        ><i class="bi bi-linkedin"></i
-                      ></a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="content p-3">
-                  <h4 class="name mb-1">Ngô Thị Lan</h4>
-                  <p class="role mb-2">Đầu Bếp Phụ</p>
-                  <p class="excerpt mb-3">
-                    Hỗ trợ chế biến và chuẩn bị nguyên liệu. Tỉ mỉ, cẩn thận và
-                    luôn đảm bảo chất lượng món ăn.
-                  </p>
-                  <div class="badges d-flex flex-wrap gap-2">
-                    <span class="mini-badge"
-                      ><i class="bi bi-emoji-smile me-1"></i> Được Khách Yêu
-                      Thích</span
-                    >
-                  </div>
-                </div>
-              </article>
-            </div>
-            <!-- End Chef Card -->
-          </div>
-        </div>
-      </section>
-      <!-- /Chefs Section -->
 
       <!-- Book A Table Section -->
       <section id="book-a-table" class="book-a-table section light-background">
@@ -1884,104 +1591,7 @@
         </div>
         <!-- End Section Title -->
 
-        <div class="container" data-aos="fade-up" data-aos-delay="100">
-          <div class="row">
-            <div
-              class="col-lg-8 mx-auto text-center"
-              data-aos="fade-up"
-              data-aos-delay="150"
-            >
-              <div class="seasonal-hero">
-                <span class="seasonal-badge">Có Thời Hạn</span>
-                <h2>Festival Ẩm Thực Huế</h2>
-                <p>
-                  Trải nghiệm đặc biệt với những món ăn cung đình Huế được chế
-                  biến theo công thức hoàng gia. Đây là cơ hội hiếm có để thưởng
-                  thức hương vị truyền thống đích thực của cố đô.
-                </p>
-                <div class="festival-dates">
-                  <i class="bi bi-calendar-event"></i>
-                  <span>1 Tháng 12 - 28 Tháng 2, 2025</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="row g-4 mb-5" data-aos="fade-up" data-aos-delay="200">
-            <div class="col-lg-6" data-aos="slide-right" data-aos-delay="250">
-              <div class="feature-card primary">
-                <div class="feature-visual">
-                  <img
-                    src="assets/img/restaurant/misc-3.webp"
-                    alt="Special Menu"
-                    class="img-fluid"
-                  />
-                  <div class="feature-badge">
-                    <i class="bi bi-star-fill"></i>
-                    <span>Chef's Special</span>
-                  </div>
-                </div>
-                <div class="feature-content">
-                  <h3>Thực Đơn Cung Đình Huế</h3>
-                  <p>
-                    Những món ăn được chế biến theo công thức cung đình với
-                    nguyên liệu cao cấp nhất. Mỗi món ăn đều mang đậm dấu ấn văn
-                    hóa và lịch sử của cố đô Huế.
-                  </p>
-                  <div class="feature-highlights">
-                    <div class="highlight-item">
-                      <i class="bi bi-check-circle-fill"></i>
-                      <span>Nguyên Liệu Cao Cấp</span>
-                    </div>
-                    <div class="highlight-item">
-                      <i class="bi bi-check-circle-fill"></i>
-                      <span>Công Thức Cung Đình</span>
-                    </div>
-                  </div>
-                  <a href="#" class="feature-link"
-                    >Khám Phá Menu <i class="bi bi-arrow-right"></i
-                  ></a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-6" data-aos="slide-left" data-aos-delay="300">
-              <div class="feature-card secondary">
-                <div class="feature-visual">
-                  <img
-                    src="assets/img/restaurant/misc-7.webp"
-                    alt="Trà Đạo Huế"
-                    class="img-fluid"
-                  />
-                  <div class="feature-badge">
-                    <i class="bi bi-award-fill"></i>
-                    <span>Nghệ Thuật</span>
-                  </div>
-                </div>
-                <div class="feature-content">
-                  <h3>Trà Đạo Truyền Thống</h3>
-                  <p>
-                    Trải nghiệm văn hóa trà đạo Huế với những loại trà thượng
-                    hạng được pha chế theo phong cách cung đình. Một trải nghiệm
-                    tinh thần tuyệt vời.
-                  </p>
-                  <div class="feature-highlights">
-                    <div class="highlight-item">
-                      <i class="bi bi-check-circle-fill"></i>
-                      <span>Trà Thượng Hạng</span>
-                    </div>
-                    <div class="highlight-item">
-                      <i class="bi bi-check-circle-fill"></i>
-                      <span>Phong Cách Cung Đình</span>
-                    </div>
-                  </div>
-                  <a href="#" class="feature-link"
-                    >Đặt Trà Đạo <i class="bi bi-arrow-right"></i
-                  ></a>
-                </div>
-              </div>
-            </div>
-          </div>
+        
 
           <div class="awards-section" data-aos="fade-up" data-aos-delay="200">
             <div class="row align-items-center">
@@ -2119,233 +1729,7 @@
       </section>
       <!-- /Events Section -->
 
-      <!-- Gallery Section -->
-      <section id="gallery" class="gallery section">
-        <!-- Section Title -->
-        <div class="container section-title" data-aos="fade-up">
-          <span class="description-title">Thư Viện Ảnh</span>
-          <h2>Thư Viện Ảnh</h2>
-          <p>
-            Khám phá không gian nhà hàng và những món ăn tuyệt vời qua bộ sưu
-            tập hình ảnh của chúng tôi
-          </p>
-        </div>
-        <!-- End Section Title -->
-
-        <div class="container" data-aos="fade-up" data-aos-delay="100">
-          <div
-            class="isotope-layout"
-            data-default-filter="*"
-            data-layout="masonry"
-            data-sort="original-order"
-          >
-            <ul
-              class="restaurant-gallery-filters isotope-filters mb-4 justify-content-center d-flex gap-2"
-              data-aos="fade-up"
-              data-aos-delay="100"
-            >
-              <li data-filter="*" class="filter-active">Tất Cả</li>
-              <li data-filter=".filter-food">Món Ăn</li>
-              <li data-filter=".filter-drinks">Đồ Uống</li>
-              <li data-filter=".filter-interior">Không Gian</li>
-              <li data-filter=".filter-staff">Đội Ngũ</li>
-            </ul>
-
-            <div
-              class="row g-3 isotope-container"
-              data-aos="fade-up"
-              data-aos-delay="200"
-            >
-              <div class="col-lg-4 col-md-6 isotope-item filter-food">
-                <figure class="gallery-card">
-                  <a
-                    href="assets/img/restaurant/main-3.webp"
-                    class="glightbox"
-                    data-gallery="restaurant-gallery"
-                  >
-                    <img
-                      src="assets/img/restaurant/main-3.webp"
-                      alt="Grilled Salmon"
-                      class="img-fluid rounded"
-                      loading="lazy"
-                    />
-                  </a>
-                  <figcaption class="caption">
-                    <span class="caption-title">Bún Bò Huế Đặc Biệt</span>
-                    <span>Bún bò với nước dùng đậm đà, thịt bò tươi ngon.</span>
-                  </figcaption>
-                </figure>
-              </div>
-              <div class="col-lg-4 col-md-6 isotope-item filter-interior">
-                <figure class="gallery-card">
-                  <a
-                    href="assets/img/restaurant/showcase-2.webp"
-                    class="glightbox"
-                    data-gallery="restaurant-gallery"
-                  >
-                    <img
-                      src="assets/img/restaurant/showcase-2.webp"
-                      alt="Phòng Ăn Chính"
-                      class="img-fluid rounded"
-                      loading="lazy"
-                    />
-                  </a>
-                  <figcaption class="caption">
-                    <span class="caption-title">Phòng Ăn Chính</span>
-                    <span>Không gian rộng rãi, ấm cúng và thân thiện.</span>
-                  </figcaption>
-                </figure>
-              </div>
-              <div class="col-lg-4 col-md-6 isotope-item filter-staff">
-                <figure class="gallery-card">
-                  <a
-                    href="assets/img/restaurant/chef-5.webp"
-                    class="glightbox"
-                    data-gallery="restaurant-gallery"
-                  >
-                    <img
-                      src="assets/img/restaurant/chef-5.webp"
-                      alt="Bếp Trưởng Thành"
-                      class="img-fluid rounded"
-                      loading="lazy"
-                    />
-                  </a>
-                  <figcaption class="caption">
-                    <span class="caption-title">Bếp Trưởng Thành</span>
-                    <span>Người tạo ra những món ăn tuyệt vời.</span>
-                  </figcaption>
-                </figure>
-              </div>
-              <div class="col-lg-4 col-md-6 isotope-item filter-drinks">
-                <figure class="gallery-card">
-                  <a
-                    href="assets/img/restaurant/drink-2.webp"
-                    class="glightbox"
-                    data-gallery="restaurant-gallery"
-                  >
-                    <img
-                      src="assets/img/restaurant/drink-2.webp"
-                      alt="Bia Huế"
-                      class="img-fluid rounded"
-                      loading="lazy"
-                    />
-                  </a>
-                  <figcaption class="caption">
-                    <span class="caption-title">Bia Huế</span>
-                    <span>Bia Huế thơm mát, hương vị đậm đà.</span>
-                  </figcaption>
-                </figure>
-              </div>
-              <div class="col-lg-4 col-md-6 isotope-item filter-food">
-                <figure class="gallery-card">
-                  <a
-                    href="assets/img/restaurant/dessert-4.webp"
-                    class="glightbox"
-                    data-gallery="restaurant-gallery"
-                  >
-                    <img
-                      src="assets/img/restaurant/dessert-4.webp"
-                      alt="Chè Huế"
-                      class="img-fluid rounded"
-                      loading="lazy"
-                    />
-                  </a>
-                  <figcaption class="caption">
-                    <span class="caption-title">Chè Huế Thập Cẩm</span>
-                    <span>Chè ngọt mát với nhiều loại đậu và thạch.</span>
-                  </figcaption>
-                </figure>
-              </div>
-              <div class="col-lg-4 col-md-6 isotope-item filter-interior">
-                <figure class="gallery-card">
-                  <a
-                    href="assets/img/restaurant/showcase-5.webp"
-                    class="glightbox"
-                    data-gallery="restaurant-gallery"
-                  >
-                    <img
-                      src="assets/img/restaurant/showcase-5.webp"
-                      alt="Bar Area"
-                      class="img-fluid rounded"
-                      loading="lazy"
-                    />
-                  </a>
-                  <figcaption class="caption">
-                    <span class="caption-title">Khu Vực Bar</span>
-                    <span>Không gian ấm cúng cho đồ uống và trò chuyện.</span>
-                  </figcaption>
-                </figure>
-              </div>
-              <div class="col-lg-4 col-md-6 isotope-item filter-staff">
-                <figure class="gallery-card">
-                  <a
-                    href="assets/img/restaurant/chef-2.webp"
-                    class="glightbox"
-                    data-gallery="restaurant-gallery"
-                  >
-                    <img
-                      src="assets/img/restaurant/chef-2.webp"
-                      alt="Phó Bếp Trưởng Dũng"
-                      class="img-fluid rounded"
-                      loading="lazy"
-                    />
-                  </a>
-                  <figcaption class="caption">
-                    <span class="caption-title">Phó Bếp Trưởng Dũng</span>
-                    <span
-                      >Chuyên gia về ẩm thực hiện đại kết hợp truyền
-                      thống.</span
-                    >
-                  </figcaption>
-                </figure>
-              </div>
-              <div class="col-lg-4 col-md-6 isotope-item filter-drinks">
-                <figure class="gallery-card">
-                  <a
-                    href="assets/img/restaurant/drink-8.webp"
-                    class="glightbox"
-                    data-gallery="restaurant-gallery"
-                  >
-                    <img
-                      src="assets/img/restaurant/drink-8.webp"
-                      alt="Cà Phê Espresso"
-                      class="img-fluid rounded"
-                      loading="lazy"
-                    />
-                  </a>
-                  <figcaption class="caption">
-                    <span class="caption-title">Cà Phê Espresso</span>
-                    <span>Hương vị đậm đà và thơm ngon, phục vụ hoàn hảo.</span>
-                  </figcaption>
-                </figure>
-              </div>
-              <div class="col-lg-4 col-md-6 isotope-item filter-food">
-                <figure class="gallery-card">
-                  <a
-                    href="assets/img/restaurant/main-7.webp"
-                    class="glightbox"
-                    data-gallery="restaurant-gallery"
-                  >
-                    <img
-                      src="assets/img/restaurant/main-7.webp"
-                      alt="Thịt Bò Nướng"
-                      class="img-fluid rounded"
-                      loading="lazy"
-                    />
-                  </a>
-                  <figcaption class="caption">
-                    <span class="caption-title">Thịt Bò Nướng Lá Lốt</span>
-                    <span>Thịt bò mềm ngon với rau thơm nướng.</span>
-                  </figcaption>
-                </figure>
-              </div>
-            </div>
-            <!-- End Gallery Items Container -->
-          </div>
-        </div>
-      </section>
-      <!-- /Gallery Section -->
-
+      
       <!-- Contact Section -->
       <section id="contact" class="contact section light-background">
         <!-- Section Title -->
