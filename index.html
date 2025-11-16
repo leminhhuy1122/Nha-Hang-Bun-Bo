@@ -191,90 +191,174 @@
                 data-aos="fade-left"
                 data-aos-delay="200"
               >
-                <h3>Đặt Bàn Trước</h3>
+                <div class="booking-header">
+                  <h3>Đặt Bàn Trước</h3>
+                  <p class="booking-subtitle">Đảm bảo có chỗ cho bạn và người thân</p>
+                </div>
+                
                 <form
                   action="forms/book-a-table.php"
                   method="post"
-                  class="php-email-form"
+                  class="php-email-form enhanced-booking-form"
+                  id="bookingForm"
                 >
                   <div class="row gy-3">
-                    <div class="col-md-6">
-                      <input
-                        type="text"
-                        name="name"
-                        class="form-control"
-                        placeholder="Họ và tên"
-                        required=""
-                      />
-                    </div>
-                    <div class="col-md-6">
-                      <input
-                        type="email"
-                        name="email"
-                        class="form-control"
-                        placeholder="Email của bạn"
-                        required=""
-                      />
-                    </div>
-                    <div class="col-md-6">
-                      <input
-                        type="tel"
-                        name="phone"
-                        class="form-control"
-                        placeholder="Số điện thoại"
-                        required=""
-                      />
-                    </div>
-                    <div class="col-md-6">
-                      <select name="people" class="form-control" required="">
-                        <option value="">Số khách</option>
-                        <option value="1">1 Người</option>
-                        <option value="2">2 Người</option>
-                        <option value="3">3 Người</option>
-                        <option value="4">4 Người</option>
-                        <option value="5">5 Người</option>
-                        <option value="6">6 Người</option>
-                        <option value="7">7 Người</option>
-                        <option value="8">8+ Người</option>
-                      </select>
-                    </div>
-                    <div class="col-md-6">
-                      <input
-                        type="date"
-                        name="date"
-                        class="form-control"
-                        required=""
-                      />
-                    </div>
-                    <div class="col-md-6">
-                      <input
-                        type="time"
-                        name="time"
-                        class="form-control"
-                        required=""
-                      />
-                    </div>
+                    <!-- Họ và tên -->
                     <div class="col-12">
-                      <textarea
-                        name="message"
-                        class="form-control"
-                        rows="3"
-                        placeholder="Yêu cầu đặc biệt hoặc ghi chú thêm"
-                      ></textarea>
-                    </div>
-                    <div class="col-12">
-                      <div class="loading">Đang xử lý...</div>
-                      <div class="error-message"></div>
-                      <div class="sent-message">
-                        Yêu cầu đặt bàn đã được gửi thành công! Chúng tôi sẽ
-                        liên hệ lại sớm nhất.
+                      <div class="form-group">
+                        <div class="input-wrapper">
+                          <i class="bi bi-person form-icon"></i>
+                          <input
+                            type="text"
+                            name="name"
+                            class="form-control"
+                            placeholder="Họ và tên"
+                            required=""
+                            autocomplete="name"
+                          />
+                        </div>
                       </div>
-                      <button type="submit" class="btn btn-primary w-100">
-                        Đặt Bàn Ngay
+                    </div>
+                    
+                    <!-- Email -->
+                    <div class="col-12">
+                      <div class="form-group">
+                        <div class="input-wrapper">
+                          <i class="bi bi-envelope form-icon"></i>
+                          <input
+                            type="email"
+                            name="email"
+                            class="form-control"
+                            placeholder="Email của bạn"
+                            required=""
+                            autocomplete="email"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <!-- Số điện thoại -->
+                    <div class="col-12">
+                      <div class="form-group">
+                        <div class="input-wrapper">
+                          <i class="bi bi-telephone form-icon"></i>
+                          <input
+                            type="tel"
+                            name="phone"
+                            class="form-control"
+                            placeholder="Số điện thoại"
+                            required=""
+                            autocomplete="tel"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <!-- Số khách -->
+                    <div class="col-12">
+                      <div class="form-group">
+                        <div class="select-wrapper">
+                          <i class="bi bi-people form-icon"></i>
+                          <select name="people" class="form-control custom-select" required="">
+                            <option value="">Số khách</option>
+                            <option value="1">1 Người</option>
+                            <option value="2">2 Người</option>
+                            <option value="3">3 Người</option>
+                            <option value="4">4 Người</option>
+                            <option value="5">5 Người</option>
+                            <option value="6">6 Người</option>
+                            <option value="7">7 Người</option>
+                            <option value="8">8+ Người</option>
+                          </select>
+                          <i class="bi bi-chevron-down select-arrow"></i>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <!-- Ngày và giờ -->
+                    <div class="col-6">
+                      <div class="form-group">
+                        <div class="input-wrapper">
+                          <i class="bi bi-calendar form-icon"></i>
+                          <input
+                            type="date"
+                            name="date"
+                            class="form-control"
+                            required=""
+                            min=""
+                            id="reservationDate"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="form-group">
+                        <div class="input-wrapper">
+                          <i class="bi bi-clock form-icon"></i>
+                          <input
+                            type="time"
+                            name="time"
+                            class="form-control"
+                            required=""
+                            min="06:00"
+                            max="21:00"
+                            id="reservationTime"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <!-- Ghi chú -->
+                    <div class="col-12">
+                      <div class="form-group">
+                        <div class="textarea-wrapper">
+                          <i class="bi bi-chat-text form-icon"></i>
+                          <textarea
+                            name="message"
+                            class="form-control"
+                            rows="3"
+                            placeholder="Yêu cầu đặc biệt hoặc ghi chú thêm"
+                          ></textarea>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <!-- Trạng thái form -->
+                    <div class="col-12">
+                      <div class="form-status">
+                        <div class="loading">
+                          <div class="loading-spinner"></div>
+                          Đang xử lý...
+                        </div>
+                        <div class="error-message"></div>
+                        <div class="sent-message">
+                          <i class="bi bi-check-circle"></i>
+                          Yêu cầu đặt bàn đã được gửi thành công! Chúng tôi sẽ liên hệ lại sớm nhất.
+                        </div>
+                      </div>
+                      
+                      <!-- Nút đặt bàn -->
+                      <button type="submit" class="btn-reserve">
+                        <i class="bi bi-calendar-check"></i>
+                        <span>Đặt Bàn</span>
                       </button>
                     </div>
                   </div>
                 </form>
+                
+                <!-- Thông tin liên hệ nhanh -->
+                <div class="booking-footer">
+                  <div class="quick-contact">
+                    <div class="contact-item">
+                      <i class="bi bi-telephone-fill"></i>
+                      <span>Gọi ngay: <a href="tel:0234382679">0234 3826 789</a></span>
+                    </div>
+                    <div class="operating-hours">
+                      <i class="bi bi-clock"></i>
+                      <span>Mở cửa: 6:00 AM - 10:00 PM</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -925,6 +1009,16 @@
                         <span class="mini-badge spicy">Cay Nồng</span>
                       </div>
                     </div>
+                    <div class="recommendation-actions">
+                      <button
+                        class="add-to-cart-btn special-dish-btn"
+                        data-name="Bún Bò Huế Cung Đình"
+                        data-price="85000"
+                        data-image="assets/img/restaurant/main-9.webp"
+                      >
+                        <i class="bi bi-cart-plus"></i> Thêm vào giỏ
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -960,6 +1054,16 @@
                         <span class="mini-badge seafood">Hải Sản</span>
                         <span class="mini-badge traditional">Truyền Thống</span>
                       </div>
+                    </div>
+                    <div class="recommendation-actions">
+                      <button
+                        class="add-to-cart-btn special-dish-btn"
+                        data-name="Bánh Khoái Huế Tôm Thịt"
+                        data-price="45000"
+                        data-image="assets/img/restaurant/main-8.webp"
+                      >
+                        <i class="bi bi-cart-plus"></i> Thêm vào giỏ
+                      </button>
                     </div>
                   </div>
                 </div>
